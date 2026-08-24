@@ -52,7 +52,6 @@
     }, 400);
   }
   frame.addEventListener("load", ocultarSplash);
-  // Respaldo por si el evento "load" no dispara a tiempo.
   setTimeout(ocultarSplash, 4000);
 
   if ("serviceWorker" in navigator) {
