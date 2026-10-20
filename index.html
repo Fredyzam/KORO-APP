@@ -37,10 +37,17 @@
   <div class="puntos">Cargando…</div>
 </div>
 
-<iframe id="app" src="https://script.google.com/macros/s/AKfycbxJNrpHTpd-D75R0lZ8fCSNg9yFFFSsQ5G5_lQ_9dg3F5WtuJodTM9Rp5AjltOpRzppjQ/exec" allow="fullscreen"></iframe>
+<iframe id="app" allow="fullscreen"></iframe>
 
 <script>
+  var URL_APP = "https://script.google.com/macros/s/AKfycbxJNrpHTpd-D75R0lZ8fCSNg9yFFFSsQ5G5_lQ_9dg3F5WtuJodTM9Rp5AjltOpRzppjQ/exec";
   var frame = document.getElementById("app");
+  // Enlace de invitado: https://koro-app.vercel.app/?t=CODIGO abre solo la página de ese invitado.
+  // Sin "t" (o con un código raro) se abre la app normal, igual que siempre.
+  var codigoInvitado = (new URLSearchParams(location.search).get("t") || "").trim();
+  frame.src = /^[a-f0-9]{14}$/.test(codigoInvitado)
+    ? URL_APP + "?action=invitado&t=" + codigoInvitado
+    : URL_APP;
   var splash = document.getElementById("splash");
   var oculto = false;
   function ocultarSplash() {
